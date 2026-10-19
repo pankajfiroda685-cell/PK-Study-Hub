@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free CBSE and RBSE study notes, question answers, and learning resources for Classes 1 to 12." />
+  <title>PK Study Hub | Learn Better, Score Higher</title>
+  <style>
+    :root {
+      --navy: #14213d;
+      --blue: #2563eb;
+      --sky: #eaf2ff;
+      --gold: #ffca5c;
+      --ink: #202938;
+      --muted: #667085;
+      --paper: #ffffff;
+      --bg: #f6f8fc;
+      --border: #e5eaf2;
+      --green: #16845b;
+      --shadow: 0 12px 35px rgba(20, 33, 61, .09);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.55; }
+    button, input, select { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+    .topbar { background: var(--navy); color: #fff; font-size: .9rem; padding: 8px 5%; text-align: center; }
+    header { background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
+    .nav { max-width: 1180px; margin: auto; padding: 14px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 800; color: var(--navy); font-size: 1.18rem; }
+    .brand-icon { display: grid; place-items: center; width: 43px; height: 43px; border-radius: 13px; background: var(--blue); color: white; font-size: 1.35rem; }
+    .brand small { display: block; color: var(--muted); font-weight: 500; font-size: .72rem; margin-top: -2px; }
+    .navlinks { display: flex; gap: 22px; align-items: center; font-size: .95rem; font-weight: 700; }
+    .navlinks a:hover { color: var(--blue); }
+    .menu-btn { display: none; border: 0; background: var(--sky); border-radius: 10px; padding: 9px 12px; }
+    .hero { background: linear-gradient(125deg, #14213d, #1e4b8f); color: white; overflow: hidden; }
+    .hero-inner { max-width: 1180px; margin: auto; padding: 68px 22px 72px; display: grid; grid-template-columns: 1.25fr .75fr; gap: 30px; align-items: center; }
+    .pill { display: inline-block; padding: 7px 12px; border-radius: 99px; background: rgba(255,255,255,.12); color: #e6efff; font-size: .85rem; font-weight: 700; }
+    h1 { font-size: clamp(2.2rem, 5vw, 3.65rem); line-height: 1.08; letter-spacing: -1.5px; margin: 18px 0; }
+    h1 span { color: var(--gold); }
+    .hero p { color: #dbe6fb; max-width: 600px; font-size: 1.07rem; }
+    .searchbox { margin-top: 25px; display: flex; background: white; border-radius: 14px; padding: 7px; max-width: 620px; box-shadow: 0 12px 28px rgba(0,0,0,.15); }
+    .searchbox input { border: 0; outline: 0; min-width: 0; flex: 1; padding: 12px; color: var(--ink); border-radius: 10px; }
+    .primary-btn { background: var(--blue); border: 0; color: white; border-radius: 10px; padding: 12px 18px; font-weight: 800; cursor: pointer; }
+    .primary-btn:hover { background: #174cc3; }
+    .hero-art { min-height: 265px; display: grid; place-items: center; }
+    .book-stack { position: relative; width: 250px; height: 230px; display: grid; place-items: center; }
+    .book { position: absolute; width: 175px; height: 205px; border-radius: 12px 18px 18px 12px; box-shadow: 0 20px 30px rgba(0,0,0,.2); display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 3.2rem; border-left: 9px solid rgba(0,0,0,.13); }
+    .book b { font-size: 1rem; margin-top: 12px; letter-spacing: 1px; }
+    .book.one { background: #ffca5c; color: var(--navy); transform: rotate(-12deg) translate(-36px, 2px); }
+    .book.two { background: #eaf2ff; color: var(--blue); transform: rotate(10deg) translate(34px, 3px); }
+    .book.three { background: #4fd1a5; color: #07553c; transform: translateY(-3px); }
+    .section { max-width: 1180px; margin: auto; padding: 54px 22px; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 25px; }
+    .eyebrow { color: var(--blue); font-weight: 800; text-transform: uppercase; letter-spacing: 1.3px; font-size: .76rem; }
+    h2 { color: var(--navy); font-size: clamp(1.65rem, 3vw, 2.2rem); margin: 5px 0 0; line-height: 1.2; }
+    .subtext { color: var(--muted); margin: 8px 0 0; }
+    .board-switch { display: flex; gap: 8px; flex-wrap: wrap; }
+    .board-btn { border: 1px solid var(--border); background: white; color: var(--muted); padding: 9px 14px; border-radius: 99px; font-weight: 800; cursor: pointer; }
+    .board-btn.active { background: var(--navy); color: white; border-color: var(--navy); }
+    .class-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+    .class-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 19px 12px; text-align: center; cursor: pointer; transition: .18s ease; box-shadow: 0 4px 15px rgba(20,33,61,.025); }
+    .class-card:hover, .class-card.selected { border-color: var(--blue); transform: translateY(-3px); box-shadow: var(--shadow); }
+    .class-card.selected { background: var(--sky); }
+    .class-number { width: 45px; height: 45px; margin: 0 auto 9px; display: grid; place-items: center; background: var(--sky); color: var(--blue); border-radius: 13px; font-size: 1.2rem; font-weight: 900; }
+    .class-card strong { display: block; color: var(--navy); }
+    .class-card small { color: var(--muted); font-size: .77rem; }
+    .study-layout { display: grid; grid-template-columns: 260px 1fr; gap: 22px; align-items: start; }
+    .panel { background: white; border: 1px solid var(--border); border-radius: 18px; padding: 22px; box-shadow: 0 5px 20px rgba(20,33,61,.035); }
+    .panel h3 { margin: 0 0 15px; color: var(--navy); }
+    .subject-list { display: grid; gap: 8px; }
+    .subject-btn { width: 100%; text-align: left; border: 1px solid transparent; background: #f7f9fd; color: var(--ink); padding: 11px 12px; border-radius: 10px; cursor: pointer; font-weight: 700; }
+    .subject-btn.active, .subject-btn:hover { background: var(--sky); border-color: #c9dcff; color: var(--blue); }
+    .content-top { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 18px; }
+    .content-top h3 { margin: 0; }
+    .select { padding: 10px 12px; border: 1px solid var(--border); background: white; border-radius: 10px; color: var(--ink); }
+    .resource-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .resource { border: 1px solid var(--border); border-radius: 14px; padding: 17px; background: #fff; }
+    .resource .tag { color: var(--green); font-weight: 800; font-size: .75rem; text-transform: uppercase; }
+    .resource h4 { color: var(--navy); margin: 7px 0; font-size: 1.02rem; }
+    .resource p { color: var(--muted); font-size: .9rem; margin: 0 0 13px; }
+    .text-btn { background: transparent; border: 0; color: var(--blue); padding: 0; font-weight: 800; cursor: pointer; }
+    .empty { background: #f8faff; border: 1px dashed #c8d7ee; border-radius: 14px; padding: 25px; color: var(--muted); text-align: center; grid-column: 1/-1; }
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .feature { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 23px; }
+    .feature-icon { font-size: 1.8rem; }
+    .feature h3 { color: var(--navy); margin: 10px 0 6px; }
+    .feature p { color: var(--muted); margin: 0; }
+    .notice { border-left: 4px solid var(--gold); background: #fff9e9; color: #725316; padding: 14px 16px; border-radius: 8px; font-size: .9rem; margin-top: 20px; }
+    footer { background: var(--navy); color: #dce5f5; padding: 35px 22px; }
+    .footer-inner { max-width: 1180px; margin: auto; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    footer strong { color: white; }
+    footer p { margin: 7px 0 0; font-size: .9rem; }
+    .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(10,20,40,.65); z-index: 30; padding: 18px; overflow: auto; }
+    .modal-backdrop.open { display: grid; place-items: center; }
+    .modal { width: min(700px, 100%); background: white; border-radius: 18px; padding: 25px; box-shadow: 0 25px 80px rgba(0,0,0,.25); max-height: 90vh; overflow: auto; }
+    .modal-head { display: flex; align-items: start; justify-content: space-between; gap: 15px; }
+    .modal-head h3 { margin: 0; color: var(--navy); }
+    .close-btn { border: 0; border-radius: 9px; background: #eef2f8; padding: 7px 11px; cursor: pointer; font-size: 1.1rem; }
+    .modal-body { white-space: pre-wrap; color: #344054; margin-top: 18px; }
+    .answer { background: #f4f8ff; padding: 13px; border-radius: 10px; margin: 10px 0; }
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; padding-top: 48px; }
+      .hero-art { display: none; }
+      .class-grid { grid-template-columns: repeat(4, 1fr); }
+      .study-layout { grid-template-columns: 220px 1fr; }
+    }
+    @media (max-width: 650px) {
+      .nav { padding: 12px 16px; }
+      .menu-btn { display: block; }
+      .navlinks { display: none; position: absolute; top: 68px; left: 0; right: 0; background: white; padding: 18px 22px; border-bottom: 1px solid var(--border); flex-direction: column; align-items: start; }
+      .navlinks.open { display: flex; }
+      .hero-inner { padding: 42px 18px 48px; }
+      .searchbox { flex-direction: column; }
+      .searchbox .primary-btn { width: 100%; }
+      .section { padding: 40px 16px; }
+      .section-head { align-items: start; flex-direction: column; }
+      .class-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .class-card { padding: 14px 6px; }
+      .study-layout { grid-template-columns: 1fr; }
+      .resource-grid, .features { grid-template-columns: 1fr; }
+      .panel { padding: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">🎓 Free learning resources for Classes 1–12 · CBSE + RBSE</div>
+  <header>
+    <nav class="nav">
+      <a class="brand" href="#home" aria-label="PK Study Hub home">
+        <span class="brand-icon">📚</span>
+        <span>PK Study Hub<small>Learn Better, Score Higher</small></span>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰ Menu</button>
+      <div class="navlinks" id="navlinks">
+        <a href="#classes">Classes</a>
+        <a href="#study">Notes & Answers</a>
+        <a href="#why">Why PK Study Hub?</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <span class="pill">✨ Your free study companion</span>
+          <h1>Study smarter.<br><span>Grow every day.</span></h1>
+          <p>Find simple notes, chapter-wise questions and answers, and useful study resources for Classes 1 to 12—all in one place.</p>
+          <form class="searchbox" id="searchForm">
+            <input id="searchInput" type="search" placeholder="Search a subject, chapter, or topic..." aria-label="Search study resources" />
+            <button class="primary-btn" type="submit">Search resources</button>
+          </form>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="book-stack">
+            <div class="book one">✏️<b>LEARN</b></div>
+            <div class="book two">📘<b>PRACTISE</b></div>
+            <div class="book three">🎓<b>SUCCEED</b></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="classes">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Start learning</div>
+          <h2>Choose your class</h2>
+          <p class="subtext">Select a class to see the available subjects and sample resources.</p>
+        </div>
+        <div class="board-switch" aria-label="Select board">
+          <button class="board-btn active" data-board="CBSE">CBSE</button>
+          <button class="board-btn" data-board="RBSE">RBSE</button>
+        </div>
+      </div>
+      <div class="class-grid" id="classGrid"></div>
+    </section>
+
+    <section class="section" id="study" style="padding-top: 8px;">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Your study space</div>
+          <h2 id="studyHeading">Class 11 study materials</h2>
+          <p class="subtext" id="studySubheading">Choose a subject to explore notes and question answers.</p>
+        </div>
+      </div>
+      <div class="study-layout">
+        <aside class="panel">
+          <h3>📖 Subjects</h3>
+          <div class="subject-list" id="subjectList"></div>
+        </aside>
+        <div class="panel">
+          <div class="content-top">
+            <h3 id="resourceHeading">Popular resources</h3>
+            <select class="select" id="resourceFilter" aria-label="Filter resources">
+              <option value="all">All resources</option>
+              <option value="notes">Notes</option>
+              <option value="qa">Question answers</option>
+            </select>
+          </div>
+          <div class="resource-grid" id="resourceGrid"></div>
+          <div class="notice">This starter website contains sample learning material. Add and review the full syllabus content for each class and board before publishing it for students.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Made for students</div>
+          <h2>Learning made simple</h2>
+          <p class="subtext">A clean, phone-friendly place to begin your studies.</p>
+        </div>
+      </div>
+      <div class="features">
+        <article class="feature"><div class="feature-icon">📝</div><h3>Easy notes</h3><p>Short, clear explanations that are easy to read and revise.</p></article>
+        <article class="feature"><div class="feature-icon">❓</div><h3>Practice questions</h3><p>Review important questions and sample answers by topic.</p></article>
+        <article class="feature"><div class="feature-icon">📱</div><h3>Works on mobile</h3><p>Study from a phone, tablet, or computer without creating an account.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div><strong>📚 PK Study Hub</strong><p>Learn Better, Score Higher.</p></div>
+      <div><strong>Free study resources</strong><p>Classes 1–12 · CBSE + RBSE</p><p>© <span id="year"></span> PK Study Hub</p></div>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <div class="modal-head"><h3 id="modalTitle">Study resource</h3><button class="close-btn" id="closeModal" aria-label="Close">✕</button></div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const primarySubjects = {
+      primary: ["English", "Hindi", "Mathematics", "EVS"],
+      middle: ["English", "Hindi", "Mathematics", "Science", "Social Science", "Sanskrit"],
+      secondary: ["English", "Hindi", "Mathematics", "Science", "Social Science", "Sanskrit"],
+      seniorScience: ["Physics", "Chemistry", "Mathematics", "Biology", "English", "Physical Education"],
+      seniorCommerce: ["Accountancy", "Business Studies", "Economics", "Mathematics", "English"],
+      seniorHumanities: ["History", "Geography", "Political Science", "Economics", "English", "Hindi"]
+    };
+
+    const sampleResources = {
+      "Class 11|Chemistry": [
+        { type: "notes", tag: "Sample notes", title: "Atoms and Molecules: Quick Revision", description: "A simple introduction to atoms, molecules, and chemical formulae.", content: "Atoms and molecules — quick notes\\n\\n• Atom: The smallest unit of an element that takes part in a chemical reaction.\\n• Molecule: A group of two or more atoms chemically bonded together.\\n• An element contains one type of atom.\\n• A compound contains two or more different elements chemically combined in a fixed ratio.\\n\\nExamples: He is a single atom; O₂ is a molecule of an element; H₂O is a compound molecule.\\n\\nThese are starter notes. Check your prescribed textbook for the complete chapter." },
+        { type: "qa", tag: "Practice Q&A", title: "Atoms and Molecules: 3 Questions", description: "Try these short Class 11-style questions and answers.", content: "1. What is an atom?\\nAnswer: An atom is the smallest unit of an element that takes part in a chemical reaction.\\n\\n2. What is a molecule?\\nAnswer: A molecule is made of two or more atoms chemically bonded together.\\n\\n3. Give one example of a compound molecule.\\nAnswer: Water (H₂O) is an example of a compound molecule." }
+      ],
+      "Class 11|Physical Education": [
+        { type: "notes", tag: "Sample notes", title: "Physical Development", description: "Short revision notes for Class 11 Physical Education.", content: "Physical development refers to changes in the body, such as growth in height and weight, stronger muscles, and improved fitness. Regular physical activity, a balanced diet, and proper rest support healthy development." },
+        { type: "qa", tag: "Practice Q&A", title: "Physical Education: Sample Questions", description: "Short answers for revision practice.", content: "1. What is physical fitness?\\nAnswer: Physical fitness is the ability to perform daily activities efficiently without excessive fatigue.\\n\\n2. Name two benefits of regular exercise.\\nAnswer: It improves strength and supports heart health.\\n\\n3. Why is warming up important?\\nAnswer: Warming up prepares the body for exercise and may help reduce injury risk." }
+      ],
+      "Class 10|Science": [
+        { type: "notes", tag: "Sample notes", title: "Chemical Reactions: Quick Notes", description: "A short introduction to chemical reactions.", content: "A chemical reaction is a process in which one or more substances change into new substances. The starting substances are reactants, and the substances formed are products. A balanced chemical equation has an equal number of atoms of each element on both sides." },
+        { type: "qa", tag: "Practice Q&A", title: "Chemical Reactions: Sample Questions", description: "Three quick revision questions.", content: "1. What is a chemical reaction?\\nAnswer: A process in which substances change into new substances.\\n\\n2. What are reactants?\\nAnswer: The substances that take part in a chemical reaction.\\n\\n3. Why should an equation be balanced?\\nAnswer: To show conservation of atoms and mass." }
+      ],
+      "Class 8|Science": [
+        { type: "notes", tag: "Sample notes", title: "Microorganisms: Quick Notes", description: "A beginner-friendly topic summary.", content: "Microorganisms are very small living things that usually require a microscope to be seen. Examples include bacteria, some fungi, protozoa, and microscopic algae. Some are useful, while others can cause disease or spoil food." },
+        { type: "qa", tag: "Practice Q&A", title: "Microorganisms: Sample Questions", description: "Short questions with answers.", content: "1. What are microorganisms?\\nAnswer: Very small organisms that generally cannot be seen clearly without a microscope.\\n\\n2. Name two groups of microorganisms.\\nAnswer: Bacteria and fungi.\\n\\n3. Are all microorganisms harmful?\\nAnswer: No. Many are useful, for example in making curd." }
+      ],
+      "Class 5|Mathematics": [
+        { type: "notes", tag: "Sample notes", title: "Fractions: Quick Notes", description: "Learn the parts of a fraction.", content: "A fraction represents a part of a whole. In 3/4, the top number (3) is the numerator and the bottom number (4) is the denominator. Fractions can represent equal parts of a whole object or group." },
+        { type: "qa", tag: "Practice Q&A", title: "Fractions: Sample Questions", description: "Simple practice for learners.", content: "1. In 2/5, what is the numerator?\\nAnswer: 2.\\n\\n2. In 3/8, what is the denominator?\\nAnswer: 8.\\n\\n3. What does one-half mean?\\nAnswer: One of two equal parts." }
+      ]
+    };
+
+    let selectedClass = 11;
+    let selectedBoard = "CBSE";
+    let selectedSubject = "Chemistry";
+    let currentSearch = "";
+
+    function classGroup(n) {
+      if (n <= 5) return "primary";
+      if (n <= 8) return "middle";
+      if (n <= 10) return "secondary";
+      return "senior";
+    }
+    function subjectsFor(n) {
+      if (n <= 5) return primarySubjects.primary;
+      if (n <= 8) return primarySubjects.middle;
+      if (n <= 10) return primarySubjects.secondary;
+      if (n === 11 || n === 12) return [...new Set([...primarySubjects.seniorScience, ...primarySubjects.seniorCommerce, ...primarySubjects.seniorHumanities])];
+      return [];
+    }
+    function renderClasses() {
+      const grid = document.getElementById("classGrid");
+      grid.innerHTML = "";
+      for (let n = 1; n <= 12; n++) {
+        const card = document.createElement("button");
+        card.className = "class-card" + (n === selectedClass ? " selected" : "");
+        card.innerHTML = `<span class="class-number">${n}</span><strong>Class ${n}</strong><small>${n <= 5 ? "Primary" : n <= 8 ? "Middle school" : n <= 10 ? "Secondary" : "Senior secondary"}</small>`;
+        card.addEventListener("click", () => {
+          selectedClass = n;
+          selectedSubject = subjectsFor(n)[0];
+          renderClasses(); renderSubjects(); renderResources();
+          document.getElementById("studyHeading").textContent = `Class ${n} study materials`;
+          document.getElementById("study").scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+        grid.appendChild(card);
+      }
+    }
+    function renderSubjects() {
+      const list = document.getElementById("subjectList");
+      list.innerHTML = "";
+      subjectsFor(selectedClass).forEach(subject => {
+        const btn = document.createElement("button");
+        btn.className = "subject-btn" + (subject === selectedSubject ? " active" : "");
+        btn.textContent = subject;
+        btn.addEventListener("click", () => { selectedSubject = subject; renderSubjects(); renderResources(); });
+        list.appendChild(btn);
+      });
+      document.getElementById("studySubheading").textContent = `${selectedBoard} · Class ${selectedClass} · Choose a subject to explore resources.`;
+    }
+    function getResources() {
+      const key = `Class ${selectedClass}|${selectedSubject}`;
+      let items = sampleResources[key] || [];
+      const filter = document.getElementById("resourceFilter").value;
+      if (filter !== "all") items = items.filter(item => item.type === filter);
+      if (currentSearch) {
+        const q = currentSearch.toLowerCase();
+        items = items.filter(item => `${item.title} ${item.description} ${item.content} ${selectedSubject} Class ${selectedClass}`.toLowerCase().includes(q));
+      }
+      return items;
+    }
+    function renderResources() {
+      document.getElementById("resourceHeading").textContent = `${selectedSubject} · Class ${selectedClass}`;
+      const grid = document.getElementById("resourceGrid");
+      grid.innerHTML = "";
+      const items = getResources();
+      if (!items.length) {
+        grid.innerHTML = `<div class="empty"><strong>More resources coming soon!</strong><br>There are no sample materials for ${selectedSubject}, Class ${selectedClass}${currentSearch ? ` matching “${escapeHtml(currentSearch)}”` : ""} yet. Choose another subject or add your notes and answers to the website content.</div>`;
+        return;
+      }
+      items.forEach((item, i) => {
+        const article = document.createElement("article");
+        article.className = "resource";
+        article.innerHTML = `<span class="tag">${item.tag}</span><h4>${item.title}</h4><p>${item.description}</p><button class="text-btn" data-index="${i}">Read resource →</button>`;
+        article.querySelector("button").addEventListener("click", () => openResource(item));
+        grid.appendChild(article);
+      });
+    }
+    function openResource(item) {
+      document.getElementById("modalTitle").textContent = item.title;
+      document.getElementById("modalBody").textContent = item.content.replace(/\\n/g, "\n");
+      document.getElementById("modalBackdrop").classList.add("open");
+    }
+    function escapeHtml(str) {
+      return str.replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+    }
+    document.querySelectorAll(".board-btn").forEach(btn => btn.addEventListener("click", () => {
+      selectedBoard = btn.dataset.board;
+      document.querySelectorAll(".board-btn").forEach(b => b.classList.toggle("active", b === btn));
+      renderSubjects();
+    }));
+    document.getElementById("resourceFilter").addEventListener("change", renderResources);
+    document.getElementById("searchForm").addEventListener("submit", e => {
+      e.preventDefault();
+      currentSearch = document.getElementById("searchInput").value.trim();
+      renderResources();
+      document.getElementById("study").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    document.getElementById("searchInput").addEventListener("input", e => {
+      if (!e.target.value.trim()) { currentSearch = ""; renderResources(); }
+    });
+    document.getElementById("closeModal").addEventListener("click", () => document.getElementById("modalBackdrop").classList.remove("open"));
+    document.getElementById("modalBackdrop").addEventListener("click", e => { if (e.target.id === "modalBackdrop") e.currentTarget.classList.remove("open"); });
+    document.getElementById("menuBtn").addEventListener("click", () => document.getElementById("navlinks").classList.toggle("open"));
+    document.querySelectorAll(".navlinks a").forEach(a => a.addEventListener("click", () => document.getElementById("navlinks").classList.remove("open")));
+    document.getElementById("year").textContent = new Date().getFullYear();
+    renderClasses(); renderSubjects(); renderResources();
+  </script>
+</body>
+</html>
